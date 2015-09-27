@@ -13,14 +13,13 @@ namespace Sigma
     public class SkullEnemy
     {
         Model model;
-        SkullEnemy[] skulls;
+        SkullEnemy[] skullsArr;
         Vector3 position;
         Vector2 heading;
-        
-
-        int attackDistance = 10;
        
-        float speed = 1f;
+        int health;
+        int attackDistance;
+        float speed;
 
         
         public void Initialize(ContentManager contMgr, Vector3 pos, Vector2 head)
@@ -28,14 +27,16 @@ namespace Sigma
             model = contMgr.Load<Model>("SkullEnemy");
             position = pos;
             heading = head;
-           
+            
+            health = 100;
+            attackDistance = 20;
+            speed = 4;
         }
 
         
 
         public void Update(Vector3 playerPosition)
         {
-
             if((Vector3.Distance(playerPosition, position) > attackDistance))
             {
                 follow(playerPosition);
@@ -102,6 +103,14 @@ namespace Sigma
             //    mesh.Draw();
             //}
             
+        }
+
+        //PROPERTIES
+        public Vector3 Pos
+        {
+            get { return position; }
+            set {position = value;}
+        
         }
         
     }
